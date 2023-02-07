@@ -2,7 +2,8 @@
 
 version="4.7.0"
 folder="workspace"
-archBin="7.2,8.7" #for NX, for Nano change to 5.3
+#archBin="7.2,8.7" #for NX, for Nano change to 5.3
+
 
 for (( ; ; ))
 do
@@ -26,9 +27,24 @@ echo "** Install requirement (1/4)"
 echo "------------------------------------"
 sudo apt update
 sudo apt upgrade -y
+
+sudo apt-get install jq -y
+
+PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
+
+if [[ $PRODUCT == *"Xavier"* ]]; then
+  echo "Detected $PRODUCT setting to Xavier Installation"
+  archBin="7.2,8.7"
+fi
+if [[ $PRODUCT == *"Nano"* ]]; then
+  echo "Detected $PRODUCT setting to Nano Installation"
+  archBin="5.3"
+fi
+
 echo "------Starting Dependency install script"
 sleep 2
-sudo sh ./installDepend.sh
+sudo chmod +x dependOpenCV.sh
+sudo sh ./dependOpenCV.sh
 echo "------Finished script----"
 sleep 5
 
@@ -44,6 +60,8 @@ sudo apt install -y curl
 echo "------------------------------------"
 echo "** Download opencv "${version}" (2/4)"
 echo "------------------------------------"
+cd ~
+mkdir cvCuda
 mkdir $folder
 cd ${folder}
 curl -L https://github.com/opencv/opencv/archive/${version}.zip -o opencv-${version}.zip
