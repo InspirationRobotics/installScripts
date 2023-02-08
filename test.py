@@ -6,7 +6,8 @@ import os
 import sys
 
 
-os.system("sudo modprobe v4l2loopback devices=2")  # will create two fake webcam devices
+# will create two fake webcam devices
+os.system("sudo modprobe v4l2loopback devices=2")
 
 IMG_W = 1280
 IMG_H = 720
@@ -19,13 +20,13 @@ fake1 = pyfakewebcam.FakeWebcam('/dev/video8', IMG_W, IMG_H)
 fake2 = pyfakewebcam.FakeWebcam('/dev/video9', IMG_W, IMG_H)
 
 while True:
-    try:    
+    try:
         ret, frame = cam.read()
 
         flipped = cv2.flip(frame, 1)
 
-        # Mirror effect 
-        frame[0 : IMG_H, IMG_W//2 : IMG_W] = flipped[0 : IMG_H, IMG_W//2 : IMG_W]
+        # Mirror effect
+        frame[0: IMG_H, IMG_W//2: IMG_W] = flipped[0: IMG_H, IMG_W//2: IMG_W]
 
         fake1.schedule_frame(frame)
         fake2.schedule_frame(flipped)
@@ -33,5 +34,5 @@ while True:
         time.sleep(1/15.0)
     except KeyboardInterrupt:
         print("Exiting...")
-        os.system("sudo modprobe -r v4l2loopback")
+        print("please run: sudo modprobe -r v4l2loopback")
         sys.exit()

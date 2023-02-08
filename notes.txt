@@ -1,17 +1,5 @@
 #./test-launch "v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
 
-sudo lshw -json | jq '.[].product'
-
-PRODUCT=$(sudo lshw -json | jq '.[].product')
-
-echo "Remember to use h265 decoding on groundstation"
-if [ $# -eq 0 ]; then
-    echo "No arguments supplied, defaulting to /dev/video0"
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
-else
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video$1 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
-fi
-
 sudo modprobe -r v4l2loopback
 
 v4l2-ctl --list-devices

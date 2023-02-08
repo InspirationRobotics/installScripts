@@ -22,13 +22,8 @@ gcc test-launch.c -o test-launch $(pkg-config --cflags --libs gstreamer-1.0 gstr
 cd ../.. 
 
 touch start_video.sh
-touch test.py
 
-PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
-
-if [[ $PRODUCT == *"Xavier"* ]]; then
-  echo "Detected $PRODUCT setting to Xavier Installation"
-  echo 'echo "Remember to use h265 decoding on groundstation"
+echo 'echo "Remember to use h265 decoding on groundstation"
 if [ $# -eq 0 ]; then
     echo "No arguments supplied, defaulting to /dev/video0"
     ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
@@ -36,18 +31,6 @@ else
     ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video$1 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
 fi
 ' >> start_video.sh
-fi
-if [[ $PRODUCT == *"Nano"* ]]; then
-  echo "Detected $PRODUCT setting to Nano Installation"
-  echo 'echo "Remember to use h264 decoding on groundstation"
-if [ $# -eq 0 ]; then
-    echo "No arguments supplied, defaulting to /dev/video0"
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device = /dev/video0 ! nvvidconv ! omxh264enc insert-vui=true insert-sps-pps=1 ! video/x-h264, stream-format=byte-stream, alignment=au ! h264parse ! rtph264pay name=pay0 pt=96"
-else
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device = /dev/video$1 ! nvvidconv ! omxh264enc insert-vui=true insert-sps-pps=1 ! video/x-h264, stream-format=byte-stream, alignment=au ! h264parse ! rtph264pay name=pay0 pt=96"
-fi
-' >> start_video.sh
-fi
 
 cp ~/installScripts/test.py ~/rtsp/
 
