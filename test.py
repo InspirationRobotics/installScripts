@@ -9,8 +9,8 @@ import sys
 # will create two fake webcam devices
 os.system("sudo modprobe v4l2loopback devices=2")
 
-IMG_W = 1280
-IMG_H = 720
+IMG_W = 640
+IMG_H = 480
 
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, IMG_W)
