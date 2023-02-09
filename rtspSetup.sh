@@ -22,6 +22,7 @@ gcc test-launch.c -o test-launch $(pkg-config --cflags --libs gstreamer-1.0 gstr
 cd ../.. 
 
 touch start_video.sh
+touch test.py
 
 echo 'echo "Remember to use h265 decoding on groundstation"
 if [ $# -eq 0 ]; then
