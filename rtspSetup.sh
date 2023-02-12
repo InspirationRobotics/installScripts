@@ -17,22 +17,34 @@ git clone https://github.com/Dat-Bois/gst-rtsp-server.git
 
 cd gst-rtsp-server/examples
 
-gcc test-launch.c -o test-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)
+gcc test-launch-custom.c -o test-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)
 
 cd ../.. 
 
 touch start_video.sh
 touch test.py
+touch notes.txt
 
 echo 'echo "Remember to use h265 decoding on groundstation"
+
+PORT=8554
+
+while [ "$(sudo netstat -tulpn | grep ":$PORT")" ]
+do
+   PORT=$(($PORT + 1))
+   echo "$PORT"
+done
+
+
 if [ $# -eq 0 ]; then
     echo "No arguments supplied, defaulting to /dev/video0"
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
+    ~/rtsp/gst-rtsp-server/examples/test-launch-custom "v4l2src device=/dev/video0 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0" $PORT
 else
-    ~/rtsp/gst-rtsp-server/examples/test-launch "v4l2src device=/dev/video$1 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0"
+    ~/rtsp/gst-rtsp-server/examples/test-launch-custom "v4l2src device=/dev/video$1 ! video/x-raw, width=640, height=480 ! nvvidconv ! nvv4l2h265enc maxperf-enable=1 ! h265parse ! rtph265pay name=pay0" $PORT
 fi
 ' >> start_video.sh
 
 cp ~/installScripts/test.py ~/rtsp/
+cp ~/installScripts/notes.txt ~/rtsp/
 
 sudo chmod +x start_video.sh

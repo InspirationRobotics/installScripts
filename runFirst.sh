@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Thanks for following directions and running this script first, you're not completely stupid ig"
+echo "Thanks for following directions and running this script first"
 sleep 1
 for (( ; ; ))
 do
@@ -24,7 +24,7 @@ do
 	break
     else
         echo "wowwwwww you thought you were cool and quirky by not following the norm, well guess what, you're not."
-        echo "Run with sudo and type "y" like a normal person"
+        echo 'Run with sudo and type "y" like a normal person'
         break
     fi
 done
