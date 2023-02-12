@@ -17,7 +17,7 @@ git clone https://github.com/Dat-Bois/gst-rtsp-server.git
 
 cd gst-rtsp-server/examples
 
-gcc test-launch-custom.c -o test-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)
+gcc test-launch-custom.c -o test-launch-custom $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)
 
 cd ../.. 
 
