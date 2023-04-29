@@ -25,7 +25,7 @@ touch start_video.sh
 touch test.py
 touch notes.txt
 
-echo 'echo "Remember to use h265 decoding on groundstation"
+echo 'echo "Remember to use rtsp decoding on groundstation"
 
 PORT=8554
 

@@ -14,6 +14,7 @@ do
         sudo chmod +x opencv4.7.0_Jetson.sh
         sudo chmod +x rtspSetup.sh
         sudo chmod +x test.sh
+        sudo chmod +x depthAISetup.sh
         echo "See that wasn't bad :), now run this script as sudo in the terminal you are installing stuff in at least once everytime so stuff doesn't go poop"
 	break
     elif [ "$question" = "n" ]; then
