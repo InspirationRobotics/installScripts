@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+version=$(python3 --version)
+version=${version:7:3}
+echo $version
+
 sudo apt update
 
 sudo python3 -m pip install depthai
@@ -10,6 +15,10 @@ cd ~/oak-d
 
 git clone https://github.com/luxonis/depthai.git
 git clone https://github.com/luxonis/depthai-python.git
+git clone https://github.com/InspirationRobotics/roboflowoak.git
+
+sudo rm -rf /usr/local/lib/python${version}/dist-packages/roboflowoak
+sudo mv roboflowoak /usr/local/lib/python${version}/dist-packages/roboflowoak
 
 cd depthai
 sudo python3 install_requirements.py
@@ -26,12 +35,12 @@ if __name__ == '__main__':
     # instantiating an object (rf) with the RoboflowOak module
     rf = RoboflowOak(model="face-detection-attempt-2", confidence=0.05, overlap=0.5,
     version="6", api_key="T1eP7cQw2VkGdtvxfsYN", rgb=True,
-    depth=True, device=None, blocking=True)
+    depth=True, device=forward, blocking=True)
     # Running our model and displaying the video output with detections
     while True:
         t0 = time.time()
         # The rf.detect() function runs the model inference
-        result, frame, raw_frame, depth = rf.detect(visualize=True)
+        result, frame, raw_frame, depth = rf.detect()
         predictions = result["predictions"]
         #{
         #    predictions:
