@@ -7,8 +7,8 @@ echo $version
 
 sudo apt update
 
-sudo python3 -m pip install depthai
-sudo python3 -m pip install roboflowoak
+python3 -m pip install depthai
+python3 -m pip install roboflowoak
 
 mkdir ~/oak-d
 cd ~/oak-d
@@ -21,7 +21,7 @@ sudo rm -rf /usr/local/lib/python${version}/dist-packages/roboflowoak
 sudo mv roboflowoak /usr/local/lib/python${version}/dist-packages/roboflowoak
 
 cd depthai
-sudo python3 install_requirements.py
+python3 install_requirements.py
 
 cd ..
 
