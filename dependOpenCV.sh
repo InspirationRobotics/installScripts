@@ -18,5 +18,5 @@ sudo apt-get install libopenblas-dev libatlas-base-dev libblas-dev -y
 sudo apt-get install liblapack-dev liblapacke-dev libeigen3-dev gfortran -y
 sudo apt-get install libhdf5-dev libprotobuf-dev protobuf-compiler -y
 sudo apt-get install libgoogle-glog-dev libgflags-dev -y
-sudo pip3 install -U jetson-stats
+#sudo pip3 install -U jetson-stats
 

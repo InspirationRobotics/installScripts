@@ -60,7 +60,7 @@ if [[ "$DISTRO" == "noetic" ]]; then
 fi
 
 echo "------------------------------------"
-echo "** Finished installing ROS, now instaling mavros"
+echo "** Finished installing ROS, now instaling mavros and CVbridge"
 echo "------------------------------------"
 
 pip3 install cython
@@ -74,8 +74,10 @@ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/inst
 chmod a+x install_geographiclib_datasets.sh
 sudo ./install_geographiclib_datasets.sh
 
+sudo apt-get install ros-${DISTRO}-cv-bridge -y
+
 echo "------------------------------------"
-echo "** Finished installing mavros"
+echo "** Finished installing mavros and CVbridge"
 echo "------------------------------------"
 echo "Done"
 
