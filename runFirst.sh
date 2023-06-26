@@ -15,8 +15,14 @@ do
         sudo chmod +x rtspSetup.sh
         sudo chmod +x test.sh
         sudo chmod +x depthAISetup.sh
+        sudo chmod +x nomachineSetup.sh
+        sudo chmod +x rosSetup.sh
         echo "See that wasn't bad :), now run this script as sudo in the terminal you are installing stuff in at least once everytime so stuff doesn't go poop"
-	break
+        sleep 5
+        echo ""
+        echo "Also run sudo apt install postfix and select 'Local Only'"
+        echo ""
+    break
     elif [ "$question" = "n" ]; then
         echo "You absolute buffoon, run as sudo and then i'll do some fancy shmancy stuff"
 	break
