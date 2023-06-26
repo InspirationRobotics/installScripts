@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="4.7.0"
-folder="workspace"
+folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
 
@@ -61,7 +61,6 @@ echo "------------------------------------"
 echo "** Download opencv "${version}" (2/4)"
 echo "------------------------------------"
 cd ~
-mkdir cvCuda
 mkdir $folder
 cd ${folder}
 curl -L https://github.com/opencv/opencv/archive/${version}.zip -o opencv-${version}.zip
