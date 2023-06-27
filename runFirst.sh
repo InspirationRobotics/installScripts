@@ -17,10 +17,16 @@ do
         sudo chmod +x depthAISetup.sh
         sudo chmod +x nomachineSetup.sh
         sudo chmod +x rosSetup.sh
+        cd ~
+        [ ! -d "~/auv" ] && echo "Downloading AUV code..."
+        [ ! -d "~/companion" ] && echo "Downloading companion code..."
+        #git clone https://github.com/InspirationRobotics/robosub_2023.git
+        #git clone https://github.com/bluerobotics/companion.git
+        #mv ~/robosub_2023 ~/auv
         echo "See that wasn't bad :), now run this script as sudo in the terminal you are installing stuff in at least once everytime so stuff doesn't go poop"
         sleep 5
         echo ""
-        echo "Also run sudo apt install postfix and select 'Local Only'"
+        echo "Also run: sudo apt install postfix and select 'Local Only'"
         echo ""
     break
     elif [ "$question" = "n" ]; then

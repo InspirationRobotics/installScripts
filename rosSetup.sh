@@ -6,6 +6,7 @@ version=`lsb_release -sc`
 sudo apt-get install python-pip python-dev -y
 sudo apt-get install libxml2-dev libxslt-dev python-dev -y
 sudo apt-get install python3-lxml python-lxml -y
+pip3 install simple-pid
 
 echo "------------------------------------"
 echo "** Detecting Version to Install"
@@ -60,7 +61,7 @@ if [[ "$DISTRO" == "noetic" ]]; then
 fi
 
 echo "------------------------------------"
-echo "** Finished installing ROS, now instaling mavros and CVbridge"
+echo "** Finished installing ROS, now instaling mavros"
 echo "------------------------------------"
 
 pip3 install cython
@@ -77,7 +78,7 @@ sudo ./install_geographiclib_datasets.sh
 sudo apt-get install ros-${DISTRO}-cv-bridge -y
 
 echo "------------------------------------"
-echo "** Finished installing mavros and CVbridge"
+echo "** Finished installing mavros"
 echo "------------------------------------"
 echo "Done"
 

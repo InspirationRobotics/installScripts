@@ -4,6 +4,28 @@ version="4.7.0"
 folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
+sudo apt-get install dphys-swapfile > /dev/null
+
+SWAP=$(free -m | grep Swap)
+SWAPtotal=${SWAP:10:15}
+echo $SWAPtotal
+
+if [ $SWAPtotal -gt 4096 ]; then
+  echo "Swap is "${SWAPtotal}"mb which is enough"
+else
+  echo "********************************************"
+  echo "Swap is "${SWAPtotal}"mb which is not enough"
+  echo "********************************************"
+  echo "Please increase swap by completing the following procedure:"
+  echo ""
+  echo "sudo nano /sbin/dphys-swapfile #change to CONF_MAXSWAP=4096 add CONF_SWAPSIZE=4096"
+  echo "Ctrl-X then y to save"
+  echo "sudo nano /etc/dphys-swapfile #uncomment CONF_MAXSWAP and set to CONF_MAXSWAP=4096"
+  echo "Ctrl-X then y to save"
+  echo "Then reboot the Jetson using: sudo reboot"
+  echo "Make sure to always run ./runFirst first before running this script again"
+  exit
+fi
 
 for (( ; ; ))
 do
@@ -90,5 +112,14 @@ echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 echo 'export PYTHONPATH=/usr/local/lib/python3.8/site-packages/:$PYTHONPATH' >> ~/.bashrc
 source ~/.bashrc
 
+sleep 5
+
+echo "------------------------------------"
+echo "** Cleaning up..."
+echo "------------------------------------"
+sudo /etc/init.d/dphys-swapfile stop
+sudo apt-get remove --purge dphys-swapfile -y
+sudo rm /var/swap
+echo "** Removed extra swap"
 
 echo "** Installed opencv "${version}" with CUDA support successfully"

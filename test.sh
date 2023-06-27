@@ -14,3 +14,14 @@
 version=$(python3 --version)
 version=${version:7:3}
 echo $version
+
+SWAP=$(free -m | grep Swap)
+SWAPtotal=${SWAP:10:15}
+echo $SWAPtotal
+
+if [ $SWAPtotal -gt 4096 ]; then
+  echo "Swap is "${SWAPtotal}"mb which is enough"
+else
+  echo "Swap is "${SWAPtotal}"mb which is not enough"
+  echo ""
+fi
