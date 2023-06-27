@@ -11,17 +11,26 @@
 #   archBin="5.3"
 # fi
 
-version=$(python3 --version)
-version=${version:7:3}
-echo $version
+# version=$(python3 --version)
+# version=${version:7:3}
+# echo $version
 
-SWAP=$(free -m | grep Swap)
-SWAPtotal=${SWAP:10:15}
-echo $SWAPtotal
+# SWAP=$(free -m | grep Swap)
+# SWAPtotal=${SWAP:10:15}
+# echo $SWAPtotal
 
-if [ $SWAPtotal -gt 4096 ]; then
-  echo "Swap is "${SWAPtotal}"mb which is enough"
+# if [ $SWAPtotal -gt 4096 ]; then
+#   echo "Swap is "${SWAPtotal}"mb which is enough"
+# else
+#   echo "Swap is "${SWAPtotal}"mb which is not enough"
+#   echo ""
+# fi
+
+TEMP=$(dpkg -s postfix)
+if [[ $TEMP == *"installed"* ]]; then
+  echo "Found postfix"
 else
-  echo "Swap is "${SWAPtotal}"mb which is not enough"
+  echo ""
+  echo "To solve: sudo apt install postfix and select 'Local Only' on the configuration screen which shows"
   echo ""
 fi
