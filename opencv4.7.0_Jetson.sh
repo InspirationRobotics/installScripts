@@ -4,27 +4,38 @@ version="4.7.0"
 folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
-sudo apt-get install dphys-swapfile > /dev/null
+sudo apt-get install dphys-swapfile -y > /dev/null
+sudo apt-get install jq -y > /dev/null
 
-SWAP=$(free -m | grep Swap)
-SWAPtotal=${SWAP:10:15}
-echo $SWAPtotal
+PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
 
-if [ $SWAPtotal -gt 4096 ]; then
-  echo "Swap is "${SWAPtotal}"mb which is enough"
-else
-  echo "********************************************"
-  echo "Swap is "${SWAPtotal}"mb which is not enough"
-  echo "********************************************"
-  echo "Please increase swap by completing the following procedure:"
-  echo ""
-  echo "sudo nano /sbin/dphys-swapfile #change to CONF_MAXSWAP=4096 add CONF_SWAPSIZE=4096"
-  echo "Ctrl-X then y to save"
-  echo "sudo nano /etc/dphys-swapfile #uncomment CONF_MAXSWAP and set to CONF_MAXSWAP=4096"
-  echo "Ctrl-X then y to save"
-  echo "Then reboot the Jetson using: sudo reboot"
-  echo "Make sure to always run ./runFirst first before running this script again"
-  exit
+if [[ $PRODUCT == *"Xavier"* ]]; then
+  echo "Detected $PRODUCT setting to Xavier Installation"
+  archBin="7.2,8.7"
+fi
+if [[ $PRODUCT == *"Nano"* ]]; then
+  echo "Detected $PRODUCT setting to Nano Installation"
+  archBin="5.3"
+  SWAP=$(free -m | grep Swap)
+  SWAPtotal=${SWAP:10:15}
+  echo $SWAPtotal
+
+  if [ $SWAPtotal -gt 4096 ]; then
+    echo "Swap is "${SWAPtotal}"mb which is enough"
+  else
+    echo "********************************************"
+    echo "Swap is "${SWAPtotal}"mb which is not enough"
+    echo "********************************************"
+    echo "Please increase swap by completing the following procedure:"
+    echo ""
+    echo "sudo nano /sbin/dphys-swapfile #change to CONF_MAXSWAP=4096 add CONF_SWAPSIZE=4096"
+    echo "Ctrl-X then y to save"
+    echo "sudo nano /etc/dphys-swapfile #uncomment CONF_MAXSWAP and set to CONF_MAXSWAP=4096"
+    echo "Ctrl-X then y to save"
+    echo "Then reboot the Jetson using: sudo reboot"
+    echo "Make sure to always run ./runFirst first before running this script again"
+    exit
+  fi
 fi
 
 for (( ; ; ))
@@ -49,19 +60,6 @@ echo "** Install requirement (1/4)"
 echo "------------------------------------"
 sudo apt update
 sudo apt upgrade -y
-
-sudo apt-get install jq -y
-
-PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
-
-if [[ $PRODUCT == *"Xavier"* ]]; then
-  echo "Detected $PRODUCT setting to Xavier Installation"
-  archBin="7.2,8.7"
-fi
-if [[ $PRODUCT == *"Nano"* ]]; then
-  echo "Detected $PRODUCT setting to Nano Installation"
-  archBin="5.3"
-fi
 
 echo "------Starting Dependency install script"
 sleep 2
@@ -114,12 +112,14 @@ source ~/.bashrc
 
 sleep 5
 
-echo "------------------------------------"
-echo "** Cleaning up..."
-echo "------------------------------------"
-sudo /etc/init.d/dphys-swapfile stop
-sudo apt-get remove --purge dphys-swapfile -y
-sudo rm /var/swap
-echo "** Removed extra swap"
+if [[ $PRODUCT == *"Nano"* ]]; then
+  echo "------------------------------------"
+  echo "** Cleaning up extra swap..."
+  echo "------------------------------------"
+  sudo /etc/init.d/dphys-swapfile stop
+  sudo apt-get remove --purge dphys-swapfile -y
+  sudo rm /var/swap
+  echo "** Removed extra swap"
+fi
 
 echo "** Installed opencv "${version}" with CUDA support successfully"
