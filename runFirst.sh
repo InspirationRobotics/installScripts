@@ -2,6 +2,8 @@
 
 # echo "Thanks for following directions and running this script first"
 # sleep 1
+sudo apt install nano -y > /dev/null
+sudo apt install screen -y > /dev/null
 for (( ; ; ))
 do
     echo "Are you running as sudo? (Like sudo ./runFirst.sh not in su or anything) (y/n)"
@@ -16,8 +18,8 @@ do
         sudo chmod +x depthAISetup.sh
         sudo chmod +x nomachineSetup.sh
         sudo chmod +x rosSetup.sh
-        cd ~
-        [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && git clone https://github.com/InspirationRobotics/robosub_2023.git && mv ~/robosub_2023 ~/auv 
+        cd /home/inspiration/
+        [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv 
         [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && git clone https://github.com/bluerobotics/companion.git
         sleep 2
         TEMP=$(dpkg -s postfix)
