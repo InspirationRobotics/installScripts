@@ -4,10 +4,13 @@ version="4.7.0"
 folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
-sudo apt-get install dphys-swapfile -y > /dev/null
-sudo apt-get install jq -y > /dev/null
+sudo apt-get install dphys-swapfile -y #> /dev/null
+sudo apt-get install jq -y #> /dev/null
+sleep(1)
 
 PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
+
+clear >$(tty)
 
 if [[ $PRODUCT == *"Xavier"* ]]; then
   echo "Detected $PRODUCT setting to Xavier Installation"
