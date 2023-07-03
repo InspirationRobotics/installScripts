@@ -19,8 +19,8 @@ do
         sudo chmod +x nomachineSetup.sh
         sudo chmod +x rosSetup.sh
         cd /home/inspiration/
-        [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv 
-        [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && git clone https://github.com/bluerobotics/companion.git
+        [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && sudo -u $USER git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv 
+        [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && sudo -u $USER git clone https://github.com/bluerobotics/companion.git
         sleep 2
         TEMP=$(dpkg -s postfix)
         if [[ $TEMP == *"installed"* ]]; then
