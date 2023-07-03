@@ -42,20 +42,20 @@ echo "** Beginning Installation of ROS ${DISTRO}"
 echo "------------------------------------"
 
 sudo apt update
-sudo apt install ros-${DISTRO}-desktop-full
+sudo apt install ros-${DISTRO}-desktop-full -y
 
 echo "source /opt/ros/"${DISTRO}"/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 if [[ "$DISTRO" == "melodic" ]]; then
-    sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-    sudo apt install python-rosdep
+    sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+    sudo apt install python-rosdep -y
     sudo rosdep init
     rosdep update
 fi
 if [[ "$DISTRO" == "noetic" ]]; then
-    sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-    sudo apt install python3-rosdep
+    sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential -y
+    sudo apt install python3-rosdep -y
     sudo rosdep init
     rosdep update
 fi
