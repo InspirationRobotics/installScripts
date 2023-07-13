@@ -6,7 +6,7 @@ folder="cvCuda"
 
 sudo apt-get install dphys-swapfile -y #> /dev/null
 sudo apt-get install jq -y #> /dev/null
-sleep(1)
+sleep 1
 
 PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
 
