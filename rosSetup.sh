@@ -44,8 +44,7 @@ echo "------------------------------------"
 sudo apt update
 sudo apt install ros-${DISTRO}-desktop-full -y
 
-echo "source /opt/ros/"${DISTRO}"/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+source /opt/ros/"${DISTRO}"/setup.bash
 
 if [[ "$DISTRO" == "melodic" ]]; then
     sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
@@ -68,6 +67,9 @@ pip3 install cython
 pip3 install MAVProxy
 
 echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
+
+echo "source /opt/ros/"${DISTRO}"/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 
 sudo apt-get install ros-${DISTRO}-mavros ros-${DISTRO}-mavros-extras -y
 
