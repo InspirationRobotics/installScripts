@@ -3,10 +3,14 @@
 DISTRO="Temp"
 version=`lsb_release -sc`
 
+sudo adduser $USER dialout
+
 sudo apt-get install python-pip python-dev -y
 sudo apt-get install libxml2-dev libxslt-dev python-dev -y
 sudo apt-get install python3-lxml python-lxml -y
 pip3 install simple-pid
+pip3 install python-dotenv
+pip install python-dotenv
 
 echo "------------------------------------"
 echo "** Detecting Version to Install"
