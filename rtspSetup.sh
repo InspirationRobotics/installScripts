@@ -43,7 +43,7 @@ else
 fi
 ' >> start_video.sh
 
-cp ~/installScripts/test.py ~/rtsp/
+cp ~/installScripts/0test.py ~/rtsp/
 cp ~/installScripts/notes.txt ~/rtsp/
 
 sudo chmod +x start_video.sh
