@@ -7,6 +7,7 @@ sudo apt-get install python-dev python-numpy python-pip -y
 sudo apt-get install python3-dev python3-numpy python3-pip -y
 sudo apt-get install libxvidcore-dev libx264-dev libgtk-3-dev -y
 sudo apt-get install libtbb2 libtbb-dev libdc1394-22-dev libxine2-dev -y
+sudo apt-get install libdc1394-dev libswresample-dev -y #for jetpack 6
 sudo apt-get install gstreamer1.0-tools libgstreamer-plugins-base1.0-dev -y
 sudo apt-get install libgstreamer-plugins-good1.0-dev -y
 sudo apt-get install libv4l-dev v4l-utils v4l2ucp qv4l2 -y

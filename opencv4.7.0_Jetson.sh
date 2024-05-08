@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="4.7.0"
+version="4.9.0"
 folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
@@ -12,6 +12,10 @@ PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[
 
 clear >$(tty)
 
+if [[ $PRODUCT == *"Orin"* ]]; then
+  echo "Detected $PRODUCT setting to Orin Installation"
+  archBin="8.7"
+fi
 if [[ $PRODUCT == *"Xavier"* ]]; then
   echo "Detected $PRODUCT setting to Xavier Installation"
   archBin="7.2,8.7"
