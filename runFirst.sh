@@ -10,6 +10,7 @@ function install_robosub {
 
 function install_robotx {
     # Do nothing for now
+    echo "RobotX code base not available yet"
 }
 
 function install {
