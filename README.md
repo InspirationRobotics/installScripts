@@ -38,7 +38,7 @@ Based off how the scripts install their dependencies, I suggest the following in
 
 1. `./depthAISetup.sh`
 2. `./opencv4.x.0_Jetson.sh` (select yes to remove old opencv; near the end it will ask for password again)
-3. `rosSetup.sh`
-4. `rtspSetup.sh`
-5. `nomachineSetup.sh` (optional)
-6. `teensySetup.sh` (optional)
+3. `./rosSetup.sh`
+4. `./rtspSetup.sh`
+5. `./nomachineSetup.sh` (optional)
+6. `./teensySetup.sh` (optional)
