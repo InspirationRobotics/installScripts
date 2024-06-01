@@ -2,6 +2,40 @@
 
 # echo "Thanks for following directions and running this script first"
 # sleep 1
+
+function install_robosub {
+    [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && sudo -u $SUDO_USER git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv && cd auv && sudo -u $SUDO_USER git checkout Revamp && cd /home/inspiration/
+    [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && sudo -u $SUDO_USER git clone https://github.com/bluerobotics/companion.git
+}
+
+function install_robotx {
+    # Do nothing for now
+}
+
+function install {
+    for (( ; ; ))
+    do
+        echo "Do you want to Robosub(rs) or RobotX(rx) or bypass(n)?"
+        read install
+
+        if [ "$install" = "rs" ]; then
+            echo "** Installing Robosub code base"
+            install_robosub
+            break
+        elif [ "$install" = "rx" ]; then
+            echo "** Installing RobotX code base"
+            install_robotx
+            break
+        elif [ "$install" = "n" ]; then
+            echo "** Bypassing code base installation"
+            break
+        else
+            echo "** Invalid input. Bypassing code base installation"
+            break
+        fi
+    done
+}
+
 sudo apt install nano -y > /dev/null
 sudo apt install screen -y > /dev/null
 for (( ; ; ))
@@ -20,8 +54,7 @@ do
         sudo chmod +x teensySetup.sh
         echo $SUDO_USER
         cd /home/inspiration/
-        [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && sudo -u $SUDO_USER git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv && cd auv && sudo -u $SUDO_USER git checkout Revamp && cd /home/inspiration/
-        [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && sudo -u $SUDO_USER git clone https://github.com/bluerobotics/companion.git
+        install
         sleep 2
         TEMP=$(dpkg -s postfix)
         if [[ $TEMP == *"installed"* ]]; then
