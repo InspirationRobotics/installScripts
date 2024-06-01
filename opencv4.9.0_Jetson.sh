@@ -15,12 +15,10 @@ clear >$(tty)
 if [[ $PRODUCT == *"Orin"* ]]; then
   echo "Detected $PRODUCT setting to Orin Installation"
   archBin="8.7"
-fi
-if [[ $PRODUCT == *"Xavier"* ]]; then
+elif [[ $PRODUCT == *"Xavier"* ]]; then
   echo "Detected $PRODUCT setting to Xavier Installation"
   archBin="7.2,8.7"
-fi
-if [[ $PRODUCT == *"Nano"* ]]; then
+elif [[ $PRODUCT == *"Nano"* ]]; then
   echo "Detected $PRODUCT setting to Nano Installation"
   archBin="5.3"
   SWAP=$(free -m | grep Swap)
@@ -43,6 +41,9 @@ if [[ $PRODUCT == *"Nano"* ]]; then
     echo "Make sure to always run ./runFirst first before running this script again"
     exit
   fi
+else
+  echo "No configuration for product: $PRODUCT. Exiting installation..."
+  exit
 fi
 
 for (( ; ; ))
