@@ -116,12 +116,18 @@ echo "** Install opencv "${version}" (4/4)"
 echo "------------------------------------"
 sudo make install
 echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export PYTHONPATH=/usr/local/lib/python3.8/site-packages/:$PYTHONPATH' >> ~/.bashrc
+
+if [[ $PRODUCT == *"Orin"* ]]; then
+  echo 'export PYTHONPATH=/usr/local/lib/python3.10/site-packages/:$PYTHONPATH' >> ~/.bashrc
+else
+  echo 'export PYTHONPATH=/usr/local/lib/python3.8/site-packages/:$PYTHONPATH' >> ~/.bashrc
+fi
 source ~/.bashrc
 
 sleep 5
-
-if [[ $PRODUCT == *"Nano"* ]]; then
+if [[ $PRODUCT == *"Orin"* ]]; then
+  echo "------------------------------------"
+elif [[ $PRODUCT == *"Nano"* ]]; then
   echo "------------------------------------"
   echo "** Cleaning up extra swap..."
   echo "------------------------------------"
