@@ -54,6 +54,7 @@ do
     if [ "$rm_old" = "yes" ]; then
         echo "** Remove other OpenCV first"
         sudo apt -y purge *libopencv*
+        pip3 uninstall opencv-contrib-python
 	break
     elif [ "$rm_old" = "no" ]; then
 	break
