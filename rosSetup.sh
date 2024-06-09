@@ -13,9 +13,9 @@ pip3 install python-dotenv
 pip install python-dotenv
 
 sudo apt install software-properties-common -y
-sudo add-apt-repository universe
-sudo add-apt-repository restricted
-sudo add-apt-repository multiverse
+sudo add-apt-repository universe -y
+sudo add-apt-repository restricted -y
+sudo add-apt-repository multiverse -y
 
 sudo apt update
 sudo apt upgrade -y
@@ -30,7 +30,7 @@ do
 
     if [ "$inst_mavros" = "yes" ]; then
         echo "** Configuration set to install mavros"
-        install_mavros_bool = true
+        install_mavros_bool=true
 	break
     elif [ "$inst_mavros" = "no" ]; then
 	break
