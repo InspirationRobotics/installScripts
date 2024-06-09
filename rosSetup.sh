@@ -20,7 +20,7 @@ sudo add-apt-repository multiverse
 sudo apt update
 sudo apt upgrade -y
 
-install_mavros_bool = false
+install_mavros_bool=false
 # Ask if user wants to install mavros
 for (( ; ; ))
 do
