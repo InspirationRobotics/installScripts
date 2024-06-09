@@ -20,6 +20,7 @@ sudo add-apt-repository multiverse
 sudo apt update
 sudo apt upgrade -y
 
+clear >$(tty)
 install_mavros_bool=false
 # Ask if user wants to install mavros
 for (( ; ; ))
@@ -146,7 +147,7 @@ echo "** Detecting Version to Install"
 echo "------------------------------------"
 
 PRODUCT=$(sudo lshw -json | jq '.product') || PRODUCT=$(sudo lshw -json | jq '.[].product')
-
+clear >$(tty)
 if [[ $PRODUCT == *"Orin"* ]]; then
   echo "Detected $PRODUCT setting to Orin Installation (ROS2 HUMBLE)"
   DISTRO="humble"
