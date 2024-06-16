@@ -4,7 +4,7 @@
 # sleep 1
 
 function install_robosub {
-    [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && sudo -u $SUDO_USER git clone https://github.com/InspirationRobotics/robosub_2023.git && mv /home/inspiration/robosub_2023 /home/inspiration/auv && cd auv && sudo -u $SUDO_USER git checkout main && cd /home/inspiration/
+    [ ! -d "/home/inspiration/auv" ] && echo "Downloading AUV code..." && sudo -u $SUDO_USER git clone https://github.com/InspirationRobotics/robosub_2024.git && mv /home/inspiration/robosub_2024 /home/inspiration/auv && cd auv && sudo -u $SUDO_USER git checkout main && cd /home/inspiration/
     [ ! -d "/home/inspiration/companion" ] && echo "Downloading companion code..." && sudo -u $SUDO_USER git clone https://github.com/bluerobotics/companion.git
 }
 
