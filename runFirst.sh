@@ -52,6 +52,7 @@ do
         sudo chmod +x depthAISetup.sh
         sudo chmod +x nomachineSetup.sh
         sudo chmod +x rosSetup.sh
+        sudo chmod +x mlSetup.sh
         sudo chmod +x teensySetup.sh
         echo $SUDO_USER
         cd /home/inspiration/
