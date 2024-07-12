@@ -16,7 +16,7 @@ Now inside the screen run:
 sudo ./runFirst.sh
 ```
 
-After that finishes, you can run the install script, for example:
+After that finishes, you can run the install script, for example: (NOTE: Do not run these with `sudo`)
 ```
 ./opencv4.9.0_Jetson.sh
 ```
@@ -27,6 +27,13 @@ To re-attach to the screen you can do the following:
 ```
 screen -r screen_name
 ```
+
+If you forget the name of the screen you can do the following to list all running screens:
+```
+screen -ls
+```
+
+Unless a screen has the same name as another, you don't have to include the preprended numbers when re-attaching.
 
 When the install is finished, you can end the screen by doing `CTRL-D`.
 
@@ -40,5 +47,6 @@ Based off how the scripts install their dependencies, I suggest the following in
 2. `./opencv4.x.0_Jetson.sh` (select yes to remove old opencv; near the end it will ask for password again)
 3. `./rosSetup.sh`
 4. `./rtspSetup.sh`
-5. `./nomachineSetup.sh` (optional)
-6. `./teensySetup.sh` (optional)
+5. `./mlSetup.sh` (currently untested)
+6. `./nomachineSetup.sh` (optional)
+7. `./teensySetup.sh` (optional)

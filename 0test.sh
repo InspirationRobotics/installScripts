@@ -26,11 +26,16 @@
 #   echo ""
 # fi
 
-TEMP=$(dpkg -s postfix)
-if [[ $TEMP == *"installed"* ]]; then
-  echo "Found postfix"
-else
-  echo ""
-  echo "To solve: sudo apt install postfix and select 'Local Only' on the configuration screen which shows"
-  echo ""
-fi
+# TEMP=$(dpkg -s postfix)
+# if [[ $TEMP == *"installed"* ]]; then
+#   echo "Found postfix"
+# else
+#   echo ""
+#   echo "To solve: sudo apt install postfix and select 'Local Only' on the configuration screen which shows"
+#   echo ""
+# fi
+
+torch_url="https://nvidia.box.com/shared/static/mp164asf3sceb570wvjsrezk1p4ftj8t.whl"
+torch_name="torch-2.3.0-cp310-cp310-linux_aarch64.whl"
+
+wget -q --show-progress ${torch_url} -O ${torch_name}
