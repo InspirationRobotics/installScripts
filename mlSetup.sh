@@ -44,7 +44,7 @@ sudo pip3 uninstall torch torchvision -y
 
 # Install dependencies
 echo "*******Installing dependencies..."
-sudo apt insall libopenblas-base libopenmpi-dev libomp-dev -y
+sudo apt intsall libopenblas-base libopenmpi-dev libomp-dev -y
 sudo apt install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev -y
 
 # Init some variables
