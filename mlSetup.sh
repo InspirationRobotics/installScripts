@@ -144,5 +144,7 @@ sudo pip install numpy==1.23.5
 # Remove pip opencv
 sudo pip uninstall opencv-python
 sudo pip3 uninstall opencv-python
+pip3 uninstall opencv-python
+
 
 echo "*******Installation complete!"
