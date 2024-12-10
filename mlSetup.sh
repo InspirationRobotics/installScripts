@@ -25,7 +25,7 @@ check=$(pip3 list | grep -F "ultralytics")
 if [ -z "$check" ]; then
     echo "*******Ultralytics has not yet been installed. Installing now..."
     sleep 2
-    sudo pip install ultralytics[export]
+    sudo pip install ultralytics[export] --ignore-installed
     clear >$(tty)
     echo "Initial installation complete."
     echo "======================"
@@ -44,7 +44,7 @@ sudo pip3 uninstall torch torchvision -y
 
 # Install dependencies
 echo "*******Installing dependencies..."
-sudo apt intsall libopenblas-base libopenmpi-dev libomp-dev -y
+sudo apt install libopenblas-base libopenmpi-dev libomp-dev -y
 sudo apt install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev -y
 
 # Init some variables
