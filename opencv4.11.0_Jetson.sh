@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="4.10.0"
+version="4.11.0"
 folder="cvCuda"
 #archBin="7.2,8.7" #for NX, for Nano change to 5.3
 
