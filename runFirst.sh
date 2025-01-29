@@ -47,7 +47,7 @@ do
     if [ "$question" = "y" ]; then
         #echo "Whoo lets go your not dumb"
         echo "Initializing..."
-        sudo chmod +x opencv4.9.0_Jetson.sh
+        sudo chmod +x opencv4.11.0_Jetson.sh
         sudo chmod +x rtspSetup.sh
         sudo chmod +x depthAISetup.sh
         sudo chmod +x nomachineSetup.sh
