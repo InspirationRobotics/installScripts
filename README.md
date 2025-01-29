@@ -47,6 +47,6 @@ Based off how the scripts install their dependencies, I suggest the following in
 2. `./opencv4.x.0_Jetson.sh` (select yes to remove old opencv; near the end it will ask for password again)
 3. `./rosSetup.sh`
 4. `./rtspSetup.sh`
-5. `./mlSetup.sh` (currently untested)
+5. `./mlSetup.sh` (NOT STABLE WITH LATEST JETPACK 6.1 RELEASE)
 6. `./nomachineSetup.sh` (optional)
 7. `./teensySetup.sh` (optional)
