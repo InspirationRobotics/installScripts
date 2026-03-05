@@ -50,3 +50,21 @@ Based off how the scripts install their dependencies, I suggest the following in
 5. `./mlSetup.sh` (NOT STABLE WITH LATEST JETPACK 6.1 RELEASE)
 6. `./nomachineSetup.sh` (optional)
 7. `./teensySetup.sh` (optional)
+
+
+## Useful notes
+
+### Linking a global install of opencv (the source install) to a venv.
+
+1. Deactivate the venv if active (ie. `deactivate`)
+2. run `python3 -c "import cv2; print(cv2.__file__)"` (note the output)
+3. activate the venv (ie `source venv/bin/activate`)
+4. run `python -c "import sysconfig; print(sysconfig.get_path('purelib'))"` (note the output)
+5. create the symlink
+```
+ln -s <folder path of step 2 (ignore any init.py etc)> <output of step 4>/cv2
+```
+so like example:
+```
+ln -s /usr/lib/python3/dist-packages/cv2 /home/eesh/droneFusion/.df/lib/python3.10/site-packages/cv2
+```
